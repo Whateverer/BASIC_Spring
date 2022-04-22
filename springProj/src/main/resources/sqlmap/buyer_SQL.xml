@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="buyer">
+	<resultMap type="buyerVO" id="buyerMap">
+		<id property="buyerId" column="BUYER_ID" />
+		<result property="buyerName" column="BUYER_NAME" />
+		<collection property="prodVO" resultMap="prodMap">
+		</collection>
+	</resultMap>
+	
+	<resultMap type="prodVO" id="prodMap">
+		<result property="prodBuyer" column="PROD_BUYER"/>
+		<result property="prodId" column="PROD_ID"/>
+		<result property="prodName" column="PROD_NAME"/>
+		<result property="prodSale" column="PROD_SALE"/>
+		<result property="prodDetail" column="PROD_DETAIL" javaType="java.lang.String" jdbcType="CLOB" />
+	</resultMap>
+	
+	<select id="list" resultMap="buyerMap">
+		SELECT B.BUYER_ID
+		     , B.BUYER_NAME
+		     , P.PROD_ID
+		     , P.PROD_NAME
+		     , P.PROD_BUYER
+		     , P.PROD_SALE
+		     , P.PROD_DETAIL
+		FROM BUYER B, PROD P
+		WHERE B.BUYER_ID = P.PROD_BUYER
+		ORDER BY BUYER_ID ASC
+	</select>
+	
+	<resultMap type="buyerVO" id="buyerMap2">
+		<id property="buyerId" column="BUYER_ID" />
+		<result property="buyerName" column="BUYER_NAME" />
+		<collection property="lprodVO" resultMap="lprodMap">
+		</collection>
+	</resultMap>
+	
+	<resultMap type="lprodVO" id="lprodMap">
+		<id property="lprodId" column="LPROD_ID"/>
+		<result property="lprodNm" column="LPROD_NM"/>
+		<result property="lprodGu" column="LPROD_GU"/>
+	</resultMap>
+	
+	<select id="lprodList" resultMap="buyerMap2">
+		SELECT B.BUYER_ID
+		     , B.BUYER_NAME
+		     , L.LPROD_NM
+		     , L.LPROD_GU
+		FROM BUYER B, LPROD L
+		WHERE B.BUYER_LGU = LPROD_GU
+		ORDER BY BUYER_ID ASC
+	</select>
+
+
+</mapper>  
+  
+  
+  
+  
+  
+  
+  
+  
+  

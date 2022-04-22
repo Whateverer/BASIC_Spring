@@ -1,0 +1,40 @@
+@charset "UTF-8";
+*{
+	font-size : 50px;
+}
+
+#header, .container, #footer{
+	width : 100%;
+	margin : 0;
+}
+
+#header{
+	backgrond-color:green;
+	height:200px;
+	float:left;
+}
+
+.container{
+	height:500px;
+}
+
+#body{
+	width:70%;
+	height:100%;
+	margin-left:10px;
+	float:left;
+	background-color:red;
+}
+
+#aside{
+	width:20%;
+	float:left;
+	heigth:100%;
+	background-color : yellow;
+}
+
+#footer{
+	backgroud-color:yellow;
+	height:200px;
+	float:left;
+}
